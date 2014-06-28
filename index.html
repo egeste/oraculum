@@ -76,7 +76,7 @@
       <div class="row">
 
       <!-- Affix Sidebar -->
-        <div class="col-sm-3 hidden-print hidden-xs">
+        <div class="hidden-print hidden-xs col-sm-3 col-md-2">
           <div id="sidebar" role="complementary" data-spy="affix" data-offset-top="300">
             <ul class="nav"></ul>
             <a class="btn btn-xs btn-default" href="#top">
@@ -87,7 +87,7 @@
         </div>
 
         <!-- Content -->
-        <div id="content" class="col-md-9">
+        <div id="content" class="col-sm-9 col-md-10">
 
           <!-- OVERVIEW -->
           <h1 id="overview" class="page-header">Overview</h1>
@@ -116,22 +116,25 @@
             </div>
           </div>
 
-          <p>Oraculum does not, however, use Chaplin's code directly. Instead, Oraculum re-implements the core behaviors of Chaplin as a reusable set of behaviors defined as mixins. The lifecycle is the same, but the structure of the objects in the is composed by a core set of completely decoupled behaviors.</p>
+          <p>Oraculum does not, however, use Chaplin's code directly. Instead, Oraculum re-implements many of the core behaviors that Chaplin provides as a reusable set of mixins. The application lifecycle is the same, but the structure of the objects in the is composed by a core set of completely decoupled behaviors.</p>
 
           <div class="panel panel-success">
             <div class="panel-heading">
               <h3 class="panel-title">
                 <img src="https://lookout.com/favicon.ico"/>
-                Oraculum Application Core Components
+                Oraculum Core Component Architecture
               </h3>
             </div>
             <div class="panel-body">
-              <img src="#" alt="Oraculum MVC Components" class="img-responsive"/>
+              <img src="assets/images/Oraculum%20Core%20Component%20Architecture.jpg" alt="Oraculum MVC Components" class="img-responsive"/>
             </div>
           </div>
 
+          <p>The diagram above reveals numerous shared behaviors between various modules of the core MVC component architecture. As you will discover using Oraculum, the core MVC components aren't the only implementations that benefit from this type of code reuse. Your Views, Models, Collections, and other objects will benefit from being able to mix in these behaviors as well.</p>
+
           <!-- How to get it -->
           <h3 id="overview-how-to-get-it" class="page-header">How to get it</h3>
+
           <div class="panel panel-warning">
             <div class="panel-heading">
               <h3 class="panel-title">
@@ -144,6 +147,7 @@
               <pre>bower install oraculum --save</pre>
             </div>
           </div>
+
           <div class="panel panel-default">
             <div class="panel-heading">
               <h3 class="panel-title">
@@ -156,6 +160,7 @@
               <pre>git clone git@github.com:lookout/oraculum.git</pre>
             </div>
           </div>
+
           <div class="panel panel-default">
             <div class="panel-heading">
               <h3 class="panel-title">
@@ -168,6 +173,7 @@
               <pre>git submodule add git@github.com:lookout/oraculum.git</pre>
             </div>
           </div>
+
           <div class="panel panel-default">
             <div class="panel-heading">
               <h3 class="panel-title">
@@ -178,7 +184,7 @@
             <div class="panel-body text-center">
               <a href="https://github.com/lookout/oraculum/releases/latest" class="btn btn-lg btn-primary" target="_blank">
                 <span class="glyphicon glyphicon-download"></span>
-                Download the latest release from github.
+                Download from github.
               </a>
             </div>
           </div>
