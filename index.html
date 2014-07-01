@@ -1,3 +1,33 @@
+<!--
+Overview
+  About (Readme)
+  Architecture
+    FactoryJS definitions/mixin archictecture
+    Chaplin Application Architecture
+    Oraculum definitions/mixins
+  How to get it
+
+Getting Started
+  RequireJS and dependencies
+  MakeEventedMethod, AOP hooks
+  Importance of mixin order
+  Basics
+    Create a simple Model with mixins
+    Create a simple View with mixins
+  Application
+    Create a layout
+    Create a routes file
+    Create a controller
+    Wire it all up
+  Provided interfaces
+  Creating custom mixins
+
+Advanced techniques
+  FactoryJS AOP
+  Definition overrides, when and how to use them
+  Mixin interfaces and swappable implementations
+-->
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -21,6 +51,12 @@
       .panel .panel-heading img {
         width: 20px;
         height: 20px;
+      }
+      .thumbnail.pull-left {
+        margin-right: 1em;
+      }
+      .thumbnail.pull-right {
+        margin-left: 1em;
       }
 
       /* Sidebar general styles */
@@ -76,7 +112,7 @@
       <div class="row">
 
       <!-- Affix Sidebar -->
-        <div class="hidden-print hidden-xs col-sm-3 col-md-2">
+        <div class="hidden-print hidden-xs col-sm-4 col-md-3">
           <div id="sidebar" role="complementary" data-spy="affix" data-offset-top="300">
             <ul class="nav"></ul>
             <a class="btn btn-xs btn-default" href="#top">
@@ -87,7 +123,7 @@
         </div>
 
         <!-- Content -->
-        <div id="content" class="col-sm-9 col-md-10">
+        <div id="content" class="col-sm-8 col-md-9">
 
           <!-- OVERVIEW -->
           <h1 id="overview" class="page-header">Overview</h1>
@@ -100,64 +136,88 @@
 
           <p>Objects and classes composed with Oraculum are often no more than a few lines simple configuration, yet through their mixins they can be perform incredibly complex tasks. There are mixins that emulate or implement every behavior Chaplin provides, plus many other behaviors unique to Oraculum. Because all behaviors are optional and formatted using the FactoryJS mixin syntax, it's incredibly easy to add custom behaviors or import behaviors authored by the open source community.</p></article>
 
+
           <!-- Architecture -->
+          <div class="clearfix"></div>
           <h3 id="overview-architecture" class="page-header">Architecture</h3>
-          <p class="lead">Oraculum is part MVC framework and part behavior library. As such the architecture can be thought of as two separate sets of components. The MVC components of Oraculum are a set of definitions and mixins that emulate the behaviors of Chaplin, and, from a high-level perspective share Chaplin's MVC architecture.</p>
+          <p class="lead">Oraculum is part MVC framework and part behavior library. As such, the architecture can be thought of as two separate sets of components.</p>
 
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              <h3 class="panel-title">
-                <img src="http://chaplinjs.org/favicon.ico"/>
-                The Chaplin Application Lifecycle
-              </h3>
-            </div>
-            <div class="panel-body">
-              <img src="http://chaplinjs.org/images/chaplin-lifecycle.png" alt="Chaplin MVC Lifecycle" class="img-responsive"/>
-            </div>
-          </div>
+          <p>The MVC component of Oraculum is a set of definitions and mixins that emulate the behaviors of Chaplin, and from a high-level perspective, share Chaplin's MVC architecture.</p>
 
-          <p>Oraculum does not, however, use Chaplin's code directly. Instead, Oraculum re-implements many of the core behaviors that Chaplin provides as a reusable set of mixins. The application lifecycle is the same, but the structure of the objects in the is composed by a core set of completely decoupled behaviors.</p>
+          <p>The behavior library component of Oraculum is a set of definitions and mixins that aims solve generic, common use case problems such as binding an element's text property to an attribute of a data model, or dynamically sorting a collection's models.</p>
 
-          <div class="panel panel-success">
-            <div class="panel-heading">
-              <h3 class="panel-title">
-                <img src="https://lookout.com/favicon.ico"/>
-                Oraculum Core Component Architecture
-              </h3>
-            </div>
-            <div class="panel-body">
-              <img src="assets/images/Oraculum%20Core%20Component%20Architecture.jpg" alt="Oraculum MVC Components" class="img-responsive"/>
-            </div>
-          </div>
+
+          <!-- FactoryJS Overview -->
+          <div class="clearfix"></div>
+          <h3 id="overview-factory-architecture" class="page-header">FactoryJS Composition Architecture</h3>
+
+          <a href="assets/images/FactoryJS%20Composition%20Architecture.jpg" class="thumbnail pull-right col-xs-12 col-sm-4 col-md-3 text-center" target="_blank">
+            <img src="assets/images/FactoryJS%20Composition%20Architecture.jpg" alt="The FactoryJS Composition Architecture"/>
+            <small>The FactoryJS Composition Architecture</small>
+          </a>
+
+          <p class="lead">To understand Oraculum, you first need to understand the FactoryJS composition architecture.</p>
+
+          <p>Unlike any of psuedo classical inheritance mechanisms provided by other javascript frameworks or transpilers, Oraculum uses FactoryJS to perform object composition.</p>
+
+          <!-- Chaplin Application Lifecycle -->
+          <div class="clearfix"></div>
+          <h3 id="overview-chaplin-architecture" class="page-header">Chaplin Application Lifecycle</h3>
+
+          <a href="http://chaplinjs.org/images/chaplin-lifecycle.png" class="thumbnail pull-left col-xs-12 col-sm-4 col-md-3 text-center" target="_blank">
+            <img src="http://chaplinjs.org/images/chaplin-lifecycle.png" alt="The Chaplin Application Lifecycle"/>
+            <small>The Chaplin Application Lifecycle</small>
+          </a>
+
+          <p class="lead">Oraculum does not use Chaplin's code directly.</p>
+
+          <p>Instead, Oraculum re-implements many of the core behaviors that Chaplin provides as a reusable set of mixins. The application lifecycle is the same, but the structure of the objects in the is composed by a core set of completely decoupled behaviors.</p>
+
+          <!-- Oraculum Core Component Architecture -->
+          <div class="clearfix"></div>
+          <h3 id="overview-oraculum-core-architecture" class="page-header">Oraculum Core Component Architecture</h3>
+
+
+          <a href="assets/images/Oraculum%20Core%20Component%20Architecture.jpg" class="thumbnail pull-right col-xs-12 col-sm-4 col-md-3 text-center" target="_blank">
+            <img src="assets/images/Oraculum%20Core%20Component%20Architecture.jpg" alt="Oraculum Core Component Architecture"/>
+            <small>Oraculum Core Component Architecture</small>
+          </a>
 
           <p>The diagram above reveals numerous shared behaviors between various modules of the core MVC component architecture. As you will discover using Oraculum, the core MVC components aren't the only implementations that benefit from this type of code reuse. Your Views, Models, Collections, and other objects will benefit from being able to mix in these behaviors as well.</p>
 
           <!-- How to get it -->
+          <div class="clearfix"></div>
           <h3 id="overview-how-to-get-it" class="page-header">How to get it</h3>
 
-          <div class="panel panel-warning">
-            <div class="panel-heading">
-              <h3 class="panel-title">
-                <img src="http://bower.io/favicon.ico"/>
-                As a Bower component
-              </h3>
+          <div class="row">
+            <div class="col-md-12 col-lg-6">
+              <div class="panel panel-warning">
+                <div class="panel-heading">
+                  <h3 class="panel-title">
+                    <img src="http://bower.io/favicon.ico"/>
+                    As a Bower component
+                  </h3>
+                </div>
+                <div class="panel-body">
+                  Within the directory of your existing git repo, run:
+                  <pre>bower install oraculum --save</pre>
+                </div>
+              </div>
             </div>
-            <div class="panel-body">
-              Within the directory of your existing git repo, run:
-              <pre>bower install oraculum --save</pre>
-            </div>
-          </div>
 
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              <h3 class="panel-title">
-                <img src="https://github.com/favicon.ico"/>
-                As a git repo
-              </h3>
-            </div>
-            <div class="panel-body">
-              Within the directory where you want to place the repo, run:
-              <pre>git clone git@github.com:lookout/oraculum.git</pre>
+            <div class="col-md-12 col-lg-6">
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h3 class="panel-title">
+                    <img src="https://github.com/favicon.ico"/>
+                    As a git repo
+                  </h3>
+                </div>
+                <div class="panel-body">
+                  Within the directory where you want to place the repo, run:
+                  <pre>git clone git@github.com:lookout/oraculum.git</pre>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -174,22 +234,18 @@
             </div>
           </div>
 
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              <h3 class="panel-title">
-                <img src="https://github.com/favicon.ico"/>
-                Or simply download the latest release from github.
-              </h3>
-            </div>
-            <div class="panel-body text-center">
-              <a href="https://github.com/lookout/oraculum/releases/latest" class="btn btn-lg btn-primary" target="_blank">
-                <span class="glyphicon glyphicon-download"></span>
-                Download from github.
-              </a>
-            </div>
-          </div>
+          <p class="text-center lead">
+            Or you can simply download the latest release from github.
+            <br/>
+            <br/>
+            <a href="https://github.com/lookout/oraculum/releases/latest" class="btn btn-lg btn-success" target="_blank">
+              <span class="glyphicon glyphicon-download"></span>
+              Download from github
+            </a>
+          </p>
 
           <!-- GETTING STARTED -->
+          <div class="clearfix"></div>
           <h1 id="getting-started" class="page-header">Getting Started</h1>
 
           <!-- Dependencies -->
@@ -198,7 +254,7 @@
 
           <small>
             <p>
-              * <a href="https://github.com/lookout/oraculum/issues?milestone=1" target="_blank">CommonJS support is forthcoming.</a>
+              * <a href="https://github.com/lookout/oraculum/issues?milestone=1" target="_blank">CommonJS/Browserify support is forthcoming.</a>
             </p>
           </small>
 
@@ -218,7 +274,10 @@
 
       // Dynamically hydrate our sidebar, because hard coding is fo suckaz.
       var makeItem = function (el) {
-        return $('<li/>').append($('<a/>').attr('href', '#'+el.id).text(el.innerText));
+        return $('<li/>').append($('<a/>')
+          .attr('href', '#'+el.id)
+          .text(el.innerText)
+        );
       };
 
       var $sidebar = $('#sidebar .nav');
