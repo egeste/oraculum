@@ -1,5 +1,6 @@
 define [
   'cs!app'
+  'cs!app/libs'
   'cs!app/application/routes'
   'cs!app/application/layout'
   'oraculum/application/index'
@@ -10,3 +11,6 @@ define [
     layout: 'Dox.Layout'
     routes: Dox.get 'routes'
     pushState: false
+
+  $ = Dox.get 'jQuery'
+  $('#github-is-slow').remove()
