@@ -7,6 +7,9 @@ define [
   Dox.extend 'View', 'Dox.Layout', {
     el: '#content'
 
+    initialize: ->
+      @$('#github-is-slow').remove()
+
     mixinOptions:
       regions:
         info: '#info'
