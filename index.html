@@ -3,9 +3,25 @@ Overview
   About (Readme)
   Architecture
     FactoryJS definitions/mixin archictecture
+      Why FactoryJS?
+        Composition
+        Ease of debugging
+        Non-destructive operations
+        Reference instance by definition name (configuration)
+        Dynamic behavior modification of existing objects in-memory
+
     Chaplin Application Architecture
+      Short overview
+      What is different
+
     Oraculum definitions/mixins
+      What's provided
+        MVC components
+        AOP hooking (makeEventedMethod, makeMiddlewareMethod)
+        Behavior library
+
   How to get it
+    bower, git, git submodule, zip, tgz
 
 Getting Started
   RequireJS and dependencies
@@ -23,7 +39,7 @@ Getting Started
   Creating custom mixins
 
 Advanced techniques
-  FactoryJS AOP
+  FactoryJS AOP, aggregation, modification on instanciation
   Definition overrides, when and how to use them
   Mixin interfaces and swappable implementations
 -->
@@ -34,61 +50,18 @@ Advanced techniques
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
+    <meta name="description" content="Factory-driven Backbone.JS behaviors based on Chaplin.">
     <meta name="author" content="Steve (Egesté) Regester <egeste@lookout.com>">
+
     <link rel="icon" href="https://www.lookout.com/favicon.ico">
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="examples/vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="examples/css/oraculum.css">
+
     <title>Oraculum - Factory-driven Backbone.JS behaviors based on Chaplin.</title>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-    <style type="text/css">
 
-      /* Generic overrides */
-      .btn.btn-lg img {
-        width: 20px;
-        height: 20px;
-      }
-      .panel .panel-heading img {
-        width: 20px;
-        height: 20px;
-      }
-      .thumbnail.pull-left {
-        margin-right: 1em;
-      }
-      .thumbnail.pull-right {
-        margin-left: 1em;
-      }
-
-      /* Sidebar general styles */
-      #sidebar { top: 30px; }
-      #sidebar a {
-        color: #666;
-        text-decoration: none;
-      }
-      #sidebar > .nav { margin-bottom: 1em; }
-      #sidebar > .nav li > a {
-        padding: 0 0.7em;
-        border-left: 2px solid transparent;
-        -webkit-transition: border-color 300ms linear;
-        -moz-transition: border-color 300ms linear;
-        -ms-transition: border-color 300ms linear;
-        -o-transition: border-color 300ms linear;
-        transition: border-color 300ms linear;
-      }
-      #sidebar > .nav li.active > a {
-        color: #398439;
-        border-color: #449d44;
-      }
-
-      /* Sidebar subnav styles */
-      #sidebar > .nav > li > a { font-weight: bold; }
-      #sidebar > .nav > li > ul { display: none; }
-      #sidebar > .nav > li.active > ul { display: block; }
-      #sidebar > .nav > li > ul > li > a { padding-left: 1.7em; }
-
-    </style>
+    <script type="text/javascript" src="examples/vendor/requirejs-2.1.14.min.js" data-main="examples/javascript/main"></script>
   </head>
-  <body data-spy="scroll" data-target="#sidebar > .nav">
+  <body data-spy="scroll" data-target="#sidebar > ul.nav">
 
     <!-- Fork me on github ribbon -->
     <a href="https://github.com/lookout/oraculum" target="_blank"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>
@@ -108,191 +81,14 @@ Advanced techniques
       </div>
     </div>
 
-    <div class="container-fluid">
+    <!-- Page content -->
+    <div id="content" class="container-fluid">
+      <div id="navbar"></div>
       <div class="row">
-
-      <!-- Affix Sidebar -->
-        <div class="hidden-print hidden-xs col-sm-4 col-md-3">
-          <div id="sidebar" role="complementary" data-spy="affix" data-offset-top="300">
-            <ul class="nav"></ul>
-            <a class="btn btn-xs btn-default" href="#top">
-              <span class="glyphicon glyphicon-chevron-up"></span>
-              Back to top
-            </a>
-          </div>
-        </div>
-
-        <!-- Content -->
-        <div id="content" class="col-sm-8 col-md-9">
-
-          <!-- OVERVIEW -->
-          <h1 id="overview" class="page-header">Overview</h1>
-
-          <p class="lead">Oraculum is a <a href="http://todomvc.com/architecture-examples/oraculum/" target="_blank">javascript MVC framework</a> and a collection of mixins for <a href="http://backbonejs.org/" target="_blank">Backbone</a> <code>Model</code>s, <code>Collection</code>s and <code>View</code>s written for <a href="https://github.com/lookout/factoryjs/" target="_blank">FactoryJS</a>. It inherits all of its application structure, many behaviors, and is generally inspired by <a href="http://chaplinjs.org/" target="_blank">Chaplin</a>.</p>
-
-          <p>Though a large portion of Oraculum's behavior is inherited from Chaplin, Oraculum employs a signficiantly different strategy surrounding the issues of inheritance, structure, and coupling. Applications built with Oraculum take full advantage of the <a href="http://en.wikipedia.org/wiki/Aspect-oriented_programming" target="_blank">aspect-oriented programming</a> and <a href="http://en.wikipedia.org/wiki/Composition_over_inheritance" target="_blank">composition</a> paradigms offered by FactoryJS. The purpose of this project is to collect abstract, reusable behaviors into a framework that  can be used by anyone building complex applications with Backbone.</p>
-
-          <p>One of the core values provided by Oraculum is its lack of implicit behavior. All non-essential behaviors are optional. No non-essential behavior is implicit. This means that your objects only ever execute code paths relevant to their concerns and you should never have to alter an object's prototype to stub its implicit behaviors. Oraculum accomplishes this by hooking targeted methods of object instances in-memory and providing a consistent eventing interface to those hooks.</p>
-
-          <p>Objects and classes composed with Oraculum are often no more than a few lines simple configuration, yet through their mixins they can be perform incredibly complex tasks. There are mixins that emulate or implement every behavior Chaplin provides, plus many other behaviors unique to Oraculum. Because all behaviors are optional and formatted using the FactoryJS mixin syntax, it's incredibly easy to add custom behaviors or import behaviors authored by the open source community.</p></article>
-
-
-          <!-- Architecture -->
-          <div class="clearfix"></div>
-          <h3 id="overview-architecture" class="page-header">Architecture</h3>
-          <p class="lead">Oraculum is part MVC framework and part behavior library. As such, the architecture can be thought of as two separate sets of components.</p>
-
-          <p>The MVC component of Oraculum is a set of definitions and mixins that emulate the behaviors of Chaplin, and from a high-level perspective, share Chaplin's MVC architecture.</p>
-
-          <p>The behavior library component of Oraculum is a set of definitions and mixins that aims solve generic, common use case problems such as binding an element's text property to an attribute of a data model, or dynamically sorting a collection's models.</p>
-
-
-          <!-- FactoryJS Overview -->
-          <div class="clearfix"></div>
-          <h3 id="overview-factory-architecture" class="page-header">FactoryJS Composition Architecture</h3>
-
-          <a href="assets/images/FactoryJS%20Composition%20Architecture.jpg" class="thumbnail pull-right col-xs-12 col-sm-4 col-md-3 text-center" target="_blank">
-            <img src="assets/images/FactoryJS%20Composition%20Architecture.jpg" alt="The FactoryJS Composition Architecture"/>
-            <small>The FactoryJS Composition Architecture</small>
-          </a>
-
-          <p class="lead">To understand Oraculum, you first need to understand the FactoryJS composition architecture.</p>
-
-          <p>Unlike any of psuedo classical inheritance mechanisms provided by other javascript frameworks or transpilers, Oraculum uses FactoryJS to perform object composition.</p>
-
-          <!-- Chaplin Application Lifecycle -->
-          <div class="clearfix"></div>
-          <h3 id="overview-chaplin-architecture" class="page-header">Chaplin Application Lifecycle</h3>
-
-          <a href="http://chaplinjs.org/images/chaplin-lifecycle.png" class="thumbnail pull-left col-xs-12 col-sm-4 col-md-3 text-center" target="_blank">
-            <img src="http://chaplinjs.org/images/chaplin-lifecycle.png" alt="The Chaplin Application Lifecycle"/>
-            <small>The Chaplin Application Lifecycle</small>
-          </a>
-
-          <p class="lead">Oraculum does not use Chaplin's code directly.</p>
-
-          <p>Instead, Oraculum re-implements many of the core behaviors that Chaplin provides as a reusable set of mixins. The application lifecycle is the same, but the structure of the objects in the is composed by a core set of completely decoupled behaviors.</p>
-
-          <!-- Oraculum Core Component Architecture -->
-          <div class="clearfix"></div>
-          <h3 id="overview-oraculum-core-architecture" class="page-header">Oraculum Core Component Architecture</h3>
-
-
-          <a href="assets/images/Oraculum%20Core%20Component%20Architecture.jpg" class="thumbnail pull-right col-xs-12 col-sm-4 col-md-3 text-center" target="_blank">
-            <img src="assets/images/Oraculum%20Core%20Component%20Architecture.jpg" alt="Oraculum Core Component Architecture"/>
-            <small>Oraculum Core Component Architecture</small>
-          </a>
-
-          <p>The diagram above reveals numerous shared behaviors between various modules of the core MVC component architecture. As you will discover using Oraculum, the core MVC components aren't the only implementations that benefit from this type of code reuse. Your Views, Models, Collections, and other objects will benefit from being able to mix in these behaviors as well.</p>
-
-          <!-- How to get it -->
-          <div class="clearfix"></div>
-          <h3 id="overview-how-to-get-it" class="page-header">How to get it</h3>
-
-          <div class="row">
-            <div class="col-md-12 col-lg-6">
-              <div class="panel panel-warning">
-                <div class="panel-heading">
-                  <h3 class="panel-title">
-                    <img src="http://bower.io/favicon.ico"/>
-                    As a Bower component
-                  </h3>
-                </div>
-                <div class="panel-body">
-                  Within the directory of your existing git repo, run:
-                  <pre>bower install oraculum --save</pre>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-md-12 col-lg-6">
-              <div class="panel panel-default">
-                <div class="panel-heading">
-                  <h3 class="panel-title">
-                    <img src="https://github.com/favicon.ico"/>
-                    As a git repo
-                  </h3>
-                </div>
-                <div class="panel-body">
-                  Within the directory where you want to place the repo, run:
-                  <pre>git clone git@github.com:lookout/oraculum.git</pre>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              <h3 class="panel-title">
-                <img src="https://github.com/favicon.ico"/>
-                As a git submodule
-              </h3>
-            </div>
-            <div class="panel-body">
-              Within the desired directory of your existing git repo, run:
-              <pre>git submodule add git@github.com:lookout/oraculum.git</pre>
-            </div>
-          </div>
-
-          <p class="text-center lead">
-            Or you can simply download the latest release from github.
-            <br/>
-            <br/>
-            <a href="https://github.com/lookout/oraculum/releases/latest" class="btn btn-lg btn-success" target="_blank">
-              <span class="glyphicon glyphicon-download"></span>
-              Download from github
-            </a>
-          </p>
-
-          <!-- GETTING STARTED -->
-          <div class="clearfix"></div>
-          <h1 id="getting-started" class="page-header">Getting Started</h1>
-
-          <!-- Dependencies -->
-          <h3 id="getting-started-dependencies" class="page-header">Dependencies</h3>
-          <p>Oraculum depends on Backbone and FactoryJS for its structure, and currently relies on RequireJS for module definitions*.</p>
-
-          <small>
-            <p>
-              * <a href="https://github.com/lookout/oraculum/issues?milestone=1" target="_blank">CommonJS/Browserify support is forthcoming.</a>
-            </p>
-          </small>
-
-        </div>
-
+        <div id="sidebar" class="hidden-print hidden-sm col-md-3"></div>
+        <div id="info" class="col-md-9"></div>
       </div>
-
-      <hr>
-      <footer>
-        <!-- Normally a copyright would go here, but that's not how we roll. -->
-      </footer>
-
     </div>
-
-    <!-- Custom Javascripz -->
-    <script type="text/javascript">
-
-      // Dynamically hydrate our sidebar, because hard coding is fo suckaz.
-      var makeItem = function (el) {
-        return $('<li/>').append($('<a/>')
-          .attr('href', '#'+el.id)
-          .text(el.innerText)
-        );
-      };
-
-      var $sidebar = $('#sidebar .nav');
-      $('#content > h1[id]').each(function(i, el) {
-        var $sectionItem = makeItem(el);
-        $sidebar.append($sectionItem);
-        $subsection = $('<ul class="nav"/>');
-        $sectionItem.append($subsection);
-        $(el).nextUntil('h1', 'h3[id]').each(function(i, el) {
-          var $subsectionItem = makeItem(el);
-          $subsection.append($subsectionItem);
-        });
-      });
-
-    </script>
 
   </body>
 </html>
