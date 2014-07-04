@@ -1,9 +1,9 @@
 define [
   'cs!app'
 
-  'text!md/overview.md'
-  # 'text!md/getting-started.md'
-  # 'text!md/advanced-techniques.md'
+  'cs!app/templates/overview'
+  # 'cs!app/templates/getting-started'
+  # 'cs!app/templates/advanced-techniques'
 
   'oraculum/application/controller'
 

@@ -2,7 +2,6 @@ define [
   'cs!app'
   'cs!app/libs'
 
-  'cs!app/views/mixins/gist-embed'
   'cs!app/views/mixins/markdown-templating'
 
   'oraculum/mixins/disposable'
@@ -16,7 +15,6 @@ define [
 
   Dox.extend 'View', 'Markdown.View', {}, mixins: [
     'Disposable.Mixin'
-    'GistEmbed.ViewMixin'
     'RegionAttach.ViewMixin'
     'RemoveDisposed.ViewMixin'
     'MarkdownTemplating.ViewMixin'

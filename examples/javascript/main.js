@@ -12,15 +12,19 @@ requirejs.config({
     'BackboneFactory': 'examples/vendor/BackboneFactory-1.0.0.min',
 
     // Util libs
-    'marked': 'examples/vendor/marked-0.3.2.min',
     'jquery': 'examples/vendor/jquery-2.1.1.min',
     'backbone': 'examples/vendor/backbone-1.1.2.min',
-    'gist-embed': 'examples/vendor/gist-embed-1.8',
-    'underscore': 'examples/vendor/underscore-1.6.0.min'
+    'underscore': 'examples/vendor/underscore-1.6.0.min',
+
+    // Markdown
+    'marked': 'examples/vendor/marked-0.3.2.min',
+    'highlight': 'examples/vendor/highlight/highlight.pack'
   },
 
   shim: {
     marked: { exports: 'marked' },
+    highlight: { exports: 'hljs' },
+
     jquery: { exports: 'jQuery' },
     underscore: { exports: '_' },
     backbone: {
