@@ -16,12 +16,17 @@ requirejs.config({
     'backbone': 'examples/vendor/backbone-1.1.2.min',
     'underscore': 'examples/vendor/underscore-1.6.0.min',
 
+    // Bootstrap stuff
+    'bootstrap': 'examples/vendor/bootstrap/js/bootstrap',
+
     // Markdown
     'marked': 'examples/vendor/marked-0.3.2.min',
     'highlight': 'examples/vendor/highlight/highlight.pack'
   },
 
   shim: {
+    bootstrap: {deps: ['jquery']},
+
     marked: { exports: 'marked' },
     highlight: { exports: 'hljs' },
 

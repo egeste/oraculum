@@ -1,7 +1,6 @@
 define [
   'cs!app'
   'cs!app/models/pages'
-  'cs!app/controllers/index'
 ], (Dox) ->
   'use strict'
 
@@ -11,10 +10,10 @@ define [
     pages = @__factory().get 'Pages.Collection'
 
     return (match) ->
-      # Match no url ('/', root)
-      match '', 'Index.Controller#index'
+      pages.each (page) ->
+        match "#{page.id}(/)(*section)", 'Index.Controller#index',
+          params: {page, pages}
 
-      # Allow our pages singleton to define what routes are available
-      pages.each ({id}) -> match id, "Index.Controller##{id}"
-
-      # Don't use a catchall. It will mess up our href IDs
+      page = pages.first()
+      match '*url', 'Index.Controller#index',
+        params: {page, pages}

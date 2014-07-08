@@ -5,4 +5,8 @@ define [
   'text!md/overview/chaplin-lifecycle.md'
   'text!md/overview/oraculum-core.md'
   'text!md/overview/how-to-get-it.md'
-], (args...) -> args.join '''\n\n<div class="clearfix"></div>\n\n\n'''
+], (args...) ->
+
+  template = '<div id="top"></div>\n\n'
+  template += args.join '\n\n<div class="clearfix"></div>\n\n\n'
+  return template

@@ -10,6 +10,7 @@ Unlike any of psuedo classical inheritance mechanisms provided by other javascri
 
 Oraculum relies on this property of FactoryJS via BackboneFactory to provide an altered `Model`, `Collection`, and `View` definition that allows referencing factory definitions by name, without modifying Backbone's `Model`, `Collection`, or `View` prototypes. If you want to, you can continue to use all of Backbone's classes like you normally would alongside Oraculum definitions.
 
+<div class="clearfix"></div>
 
 #### Example: Referencing factory definitions by name.
 ------------------------------------------------------

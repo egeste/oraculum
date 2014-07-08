@@ -1948,7 +1948,7 @@ if (typeof jQuery === "undefined") { throw new Error("Bootstrap's JavaScript req
       .map(function () {
         var $el   = $(this)
         var href  = $el.data('target') || $el.attr('href')
-        var $href = /^#./.test(href) && $(href)
+        var $href = $('[id="' + href.replace(/^#/, '') + '"]')
 
         return ($href
           && $href.length

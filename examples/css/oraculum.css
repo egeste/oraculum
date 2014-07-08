@@ -1,3 +1,8 @@
+body {
+  /* Needed for affix */
+  position: relative;
+}
+
 /* Generic overrides */
 .btn.btn-lg img {
   width: 20px;
@@ -14,38 +19,49 @@
   margin-left: 1em;
 }
 
-/* Sidebar general styles */
-#sidebar { top: 30px; }
-#sidebar a {
-  color: #666;
-  text-decoration: none;
+/* GitHub is slow... */
+#github-is-slow {
+  top: 50%;
+  left: 50%;
+  border: 5px solid #fff;
+  position: fixed;
+  background: #fff;
+  margin-top: -64px;
+  margin-left: -64px;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, .3);
 }
-#sidebar > .nav { margin-bottom: 1em; }
-#sidebar > .nav li > a {
+
+/* Give our tabs some breathing room */
+#navbar {
+  margin: 0 0 2em;
+}
+
+/* Sidebar styles */
+.sidebar-view {
+  padding-top: 1em;
+  margin-bottom: 1em;
+}
+.sidebar-view a {
+  color: #666;
   padding: 0 0.7em;
+  font-weight: bold;
   border-left: 2px solid transparent;
+  text-decoration: none;
   -webkit-transition: border-color 300ms linear;
   -moz-transition: border-color 300ms linear;
   -ms-transition: border-color 300ms linear;
   -o-transition: border-color 300ms linear;
   transition: border-color 300ms linear;
 }
-#sidebar > .nav li.active > a {
+
+.sidebar-view.affix {
+  top: 0;
+  width: inherit;
+  padding-right: 2em;
+}
+.sidebar-view.affix li.active > a {
   color: #398439;
   border-color: #449d44;
-}
-
-/* Sidebar subnav styles */
-#sidebar > .nav > li > a { font-weight: bold; }
-#sidebar > .nav > li > ul { display: none; }
-#sidebar > .nav > li.active > ul { display: block; }
-#sidebar > .nav > li > ul > li > a { padding-left: 1.7em; }
-
-/* panel gist styles */
-.panel-body .gist { margin: -17px -19px -30px; }
-.panel-body .gist .gist-file {
-  border: none;
-  border-radius: 0;
 }
 
 /* Emulate my editor. Because reasons. */
@@ -60,14 +76,13 @@ code.hljs:before {
   border-left: 1px solid rgb(102, 102, 102);
 }
 
-/* ... */
-#github-is-slow {
-  top: 50%;
-  left: 50%;
-  border: 5px solid #fff;
-  position: fixed;
-  background: #fff;
-  margin-top: -64px;
-  margin-left: -64px;
-  box-shadow: 0 0 20px 0 rgba(0, 0, 0, .3);
+.html-view h1,
+.html-view h2,
+.html-view h3,
+.html-view h4 {
+  margin: 0;
+  padding-top: 20px;
+}
+.html-view hr {
+  margin-top: 5px;
 }

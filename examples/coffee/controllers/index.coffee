@@ -1,38 +1,31 @@
 define [
   'cs!app'
 
-  'cs!app/templates/overview'
-  # 'cs!app/templates/getting-started'
-  # 'cs!app/templates/advanced-techniques'
+  'cs!app/models/pages'
+  'cs!app/views/html'
+  'cs!app/views/navbar'
+  'cs!app/views/sidebar'
 
   'oraculum/application/controller'
-
-  'cs!app/views/markdown'
-
-  'cs!app/controllers/mixins/nav-composer'
-], (Dox, overview, gettingStarted, advancedTechniques) ->
+], (Dox) ->
   'use strict'
 
   Dox.extend 'Controller', 'Index.Controller', {
 
-    index: ->
-      # A simple redirect. Will result in a url change.
-      @redirectTo 'Index.Controller#overview'
-
-    'overview': ->
-      @view = @__factory().get 'Markdown.View',
+    index: ({page, pages, section}) ->
+      pages.invoke 'unset', 'active'
+      page.set 'active', true
+      @reuse 'navbar', 'Navbar.View',
+        region: 'navbar'
+        collection: pages
+      @reuse 'sidebar', 'Sidebar.View',
+        region: 'sidebar'
+        collection: page.get 'sections'
+        scrollspy: target: '#sidebar'
+      @reuse 'info', 'HTML.View',
         region: 'info'
-        template: overview
+        template: page.get 'template'
+      return unless section
+      @publishEvent '!scrollTo', "[id=\"#{page.id}/#{section}\"]", 500
 
-    'getting-started': ->
-      console.log 'gettingStarted'
-
-    'advanced-techniques': ->
-      console.log 'advancedTechniques'
-
-  }, {
-    inheritMixins: true
-    mixins: [
-      'NavComposer.ControllerMixin'
-    ]
-  }
+  }, inheritMixins: true

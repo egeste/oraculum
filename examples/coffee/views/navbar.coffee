@@ -19,7 +19,7 @@ define [
       listen:
         'change:active model': '_updateActive'
       template: -> """
-        <a href="##{@model.id}" role="tab" data-toggle="tab">
+        <a href="##{@model.id}">
           #{@model.get 'name'}
         </a>
       """
@@ -36,9 +36,6 @@ define [
   Dox.extend 'View', 'Navbar.View', {
     tagName: 'ul'
     className: 'nav nav-tabs'
-
-    attributes:
-      role: 'tablist'
 
     mixinOptions:
       staticClasses: ['navbar-view']
