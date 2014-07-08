@@ -34,7 +34,7 @@ define [
     addWindowEvents: ->
       $(window, document).on 'resize', _.debounce (=>
         @publishEvent '!refreshOffsets'
-      ), 500
+      ), 100
 
   }, mixins: [
     'PubSub.Mixin'

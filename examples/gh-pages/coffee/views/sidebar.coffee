@@ -23,11 +23,6 @@ define [
 
   Dox.extend 'View', 'SidebarItem.View', {
     tagName: 'li'
-    events:
-      'click a': ->
-        selector = "[id=\"#{@model.id}\"]"
-        @publishEvent '!scrollTo', selector, 500
-        return false
 
     mixinOptions:
       staticClasses: ['sidebar-item-view']
@@ -38,27 +33,44 @@ define [
       """
 
   }, mixins: [
-    'PubSub.Mixin'
     'Disposable.Mixin'
     'HTMLTemplating.ViewMixin'
   ]
 
   Dox.extend 'View', 'Sidebar.View', {
-    tagName: 'ul'
-    className: 'nav'
+
+    events:
+      'click [href="#top"]': '_scrollTop'
 
     mixinOptions:
       staticClasses: ['sidebar-view']
       list:
         modelView: 'SidebarItem.View'
+        listSelector: 'ul.nav'
+      scrollspy:
+        target: '.sidebar-view'
+      template: '''
+        <ul class="nav"/>
+        <a href="#top" rel="external" class="btn btn-default btn-sm">
+          ^ Back to top
+        </a>
+      '''
+
+    _scrollTop: (e) ->
+      e.preventDefault()
+      e.stopPropagation()
+      @publishEvent '!scrollTo', '#top', 500
+      return false
 
   }, mixins: [
+    'PubSub.Mixin'
     'Disposable.Mixin'
     'List.ViewMixin'
     'Affix.ViewMixin'
     'RegionAttach.ViewMixin'
     'StaticClasses.ViewMixin'
     'RemoveDisposed.ViewMixin'
+    'HTMLTemplating.ViewMixin'
     'ScrollspyTarget.ViewMixin'
     'AutoRender.ViewMixin'
   ]

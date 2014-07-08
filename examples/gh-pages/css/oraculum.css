@@ -44,13 +44,13 @@ iframe {
 }
 
 /* Sidebar styles */
-.sidebar-view {
+.sidebar-view .nav {
   padding-top: 1em;
   margin-bottom: 1em;
 }
-.sidebar-view a {
+.sidebar-view .nav a {
   color: #666;
-  padding: 0 0.7em;
+  padding: inherit 0.7em;
   font-weight: bold;
   border-left: 2px solid transparent;
   text-decoration: none;
@@ -66,7 +66,7 @@ iframe {
   width: inherit;
   padding-right: 2em;
 }
-.sidebar-view.affix li.active > a {
+.sidebar-view.affix .nav li.active a {
   color: #398439;
   border-color: #449d44;
 }

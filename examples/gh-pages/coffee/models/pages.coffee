@@ -4,11 +4,12 @@ define [
   'cs!app/templates/home'
   'cs!app/templates/overview'
   'cs!app/templates/getting-started'
-  # 'cs!app/templates/advanced-techniques'
+  'cs!app/templates/advanced-techniques'
+  'cs!app/templates/examples'
 
   'cs!app/libs'
   'cs!app/controllers/index'
-], (Dox, home, overview, gettingStarted, advancedTechniques) ->
+], (Dox, home, overview, gettingStarted, advancedTechniques, examples) ->
   'use strict'
 
   # Dynamically generate our sections based on our markdown
@@ -58,4 +59,9 @@ define [
     #   markdown: advancedTechniques
     #   sections: getSections advancedTechniques
     # }
+    {
+      id: 'examples'
+      name: 'Examples'
+      markdown: examples
+    }
   ], parse: true
