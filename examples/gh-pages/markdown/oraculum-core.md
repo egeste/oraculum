@@ -1,5 +1,14 @@
-### Oraculum Core Component Architecture
-----------------------------------------
+<!--
+Oraculum definitions/mixins
+  What's provided
+    MVC components
+    AOP hooking (makeEventedMethod, makeMiddlewareMethod)
+    Behavior library
+-->
+
+Oraculum Core Component Architecture
+------------------------------------
+------------------------------------
 
 <a href="examples/gh-pages/images/Oraculum%20Core%20Component%20Architecture.jpg" class="thumbnail pull-right col-xs-12 col-sm-4 col-md-3 text-center" target="_blank">
   <img src="examples/gh-pages/images/Oraculum%20Core%20Component%20Architecture.jpg" alt="Oraculum Core Component Architecture"/>

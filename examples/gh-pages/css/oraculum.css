@@ -25,6 +25,11 @@ body {
 iframe {
   vertical-align: middle;
 }
+.panel-collapse > pre {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
 
 /* GitHub is slow... */
 #github-is-slow {

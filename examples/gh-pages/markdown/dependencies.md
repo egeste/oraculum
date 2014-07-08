@@ -1,5 +1,6 @@
 Dependencies
-============
+------------
+------------
 <!--
 Getting Started
   RequireJS and dependencies

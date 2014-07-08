@@ -1,5 +1,12 @@
-### Chaplin Application Lifecycle
----------------------------------
+<!--
+Chaplin Application Architecture
+  Short overview
+  What is different
+-->
+
+Chaplin Application Lifecycle
+-----------------------------
+-----------------------------
 
 <a href="http://chaplinjs.org/images/chaplin-lifecycle.png" class="thumbnail pull-left col-xs-12 col-sm-4 col-md-3 text-center" target="_blank">
   <img src="http://chaplinjs.org/images/chaplin-lifecycle.png" alt="The Chaplin Application Lifecycle"/>
