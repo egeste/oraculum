@@ -4,6 +4,10 @@ body {
 }
 
 /* Generic overrides */
+.btn img {
+  width: 1.3em;
+  height: 1.3em;
+}
 .btn.btn-lg img {
   width: 20px;
   height: 20px;
@@ -17,6 +21,9 @@ body {
 }
 .thumbnail.pull-right {
   margin-left: 1em;
+}
+iframe {
+  vertical-align: middle;
 }
 
 /* GitHub is slow... */
@@ -76,13 +83,13 @@ code.hljs:before {
   border-left: 1px solid rgb(102, 102, 102);
 }
 
-.html-view h1,
-.html-view h2,
-.html-view h3,
-.html-view h4 {
+.html-view > h1,
+.html-view > h2,
+.html-view > h3,
+.html-view > h4 {
   margin: 0;
   padding-top: 20px;
 }
-.html-view hr {
+.html-view > hr {
   margin-top: 5px;
 }

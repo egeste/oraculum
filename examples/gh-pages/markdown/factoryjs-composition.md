@@ -1,8 +1,8 @@
 ### FactoryJS Composition
 -------------------------
 
-<a href="examples/images/FactoryJS%20Composition%20Architecture.jpg" class="thumbnail pull-right col-xs-12 col-sm-4 col-md-3 text-center" target="_blank">
-  <img src="examples/images/FactoryJS%20Composition%20Architecture.jpg" alt="The FactoryJS Composition Architecture"/>
+<a href="examples/gh-pages/images/FactoryJS%20Composition%20Architecture.jpg" class="thumbnail pull-right col-xs-12 col-sm-4 col-md-3 text-center" target="_blank">
+  <img src="examples/gh-pages/images/FactoryJS%20Composition%20Architecture.jpg" alt="The FactoryJS Composition Architecture"/>
   <small>The FactoryJS Composition Architecture</small>
 </a>
 

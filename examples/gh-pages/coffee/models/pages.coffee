@@ -1,13 +1,14 @@
 define [
   'cs!app'
 
+  'cs!app/templates/home'
   'cs!app/templates/overview'
   'cs!app/templates/getting-started'
   # 'cs!app/templates/advanced-techniques'
 
   'cs!app/libs'
   'cs!app/controllers/index'
-], (Dox, overview, gettingStarted, advancedTechniques) ->
+], (Dox, home, overview, gettingStarted, advancedTechniques) ->
   'use strict'
 
   # Dynamically generate our sections based on our markdown
@@ -39,6 +40,10 @@ define [
   # Hydrate the singleton with our available pages
   Dox.get 'Pages.Collection', [
     {
+      id: 'home'
+      name: 'Home'
+      markdown: home
+    }, {
       id: 'overview'
       name: 'Overview'
       markdown: overview

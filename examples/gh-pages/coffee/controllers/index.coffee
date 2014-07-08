@@ -1,5 +1,6 @@
 define [
   'cs!app'
+  'cs!app/libs'
 
   'cs!app/models/pages'
   'cs!app/views/html'
@@ -9,6 +10,8 @@ define [
   'oraculum/application/controller'
 ], (Dox) ->
   'use strict'
+
+  _ = Dox.get 'underscore'
 
   Dox.extend 'Controller', 'Index.Controller', {
 
@@ -26,6 +29,7 @@ define [
         region: 'info'
         template: page.get 'template'
       return unless section
-      @publishEvent '!scrollTo', "[id=\"#{page.id}/#{section}\"]", 500
+      selector = "[id=\"#{page.id}/#{section}\"]"
+      _.defer => @publishEvent '!scrollTo', selector, 500
 
   }, inheritMixins: true

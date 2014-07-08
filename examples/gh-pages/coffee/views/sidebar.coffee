@@ -2,6 +2,7 @@ define [
   'cs!app'
   'cs!app/libs'
 
+  'oraculum/mixins/pub-sub'
   'oraculum/mixins/listener'
   'oraculum/mixins/disposable'
 
@@ -22,6 +23,11 @@ define [
 
   Dox.extend 'View', 'SidebarItem.View', {
     tagName: 'li'
+    events:
+      'click a': ->
+        selector = "[id=\"#{@model.id}\"]"
+        @publishEvent '!scrollTo', selector, 500
+        return false
 
     mixinOptions:
       staticClasses: ['sidebar-item-view']
@@ -32,6 +38,7 @@ define [
       """
 
   }, mixins: [
+    'PubSub.Mixin'
     'Disposable.Mixin'
     'HTMLTemplating.ViewMixin'
   ]
