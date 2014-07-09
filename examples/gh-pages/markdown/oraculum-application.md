@@ -1,16 +1,18 @@
 <!--
-Chaplin Application Architecture
-  Short overview
-  What is different
+Oraculum definitions/mixins
+  What's provided
+    MVC components
+    AOP hooking (makeEventedMethod, makeMiddlewareMethod)
+    Behavior library
 -->
 
-Chaplin Application Lifecycle
------------------------------
------------------------------
+Oraculum Application
+--------------------
+--------------------
 
-<a href="http://chaplinjs.org/images/chaplin-lifecycle.png" class="thumbnail pull-right col-sm-4 col-md-3 text-center" target="_blank">
-  <img src="http://chaplinjs.org/images/chaplin-lifecycle.png" alt="The Chaplin Application Lifecycle"/>
-  <small>The Chaplin Application Lifecycle</small>
+<a href="examples/gh-pages/images/Oraculum%20Application%20Components.jpg" class="thumbnail pull-right col-sm-4 col-md-3 text-center" target="_blank">
+  <img src="examples/gh-pages/images/Oraculum%20Application%20Components.jpg" alt="Oraculum Application Components"/>
+  <small>Oraculum Application Components</small>
 </a>
 
 Oraculum's core application definitions and mixins are ported from concepts in Chaplin. Like Chaplin, Oraculum provides the following classes:
@@ -32,7 +34,7 @@ The application lifecycle is the same between Chaplin and Oraculum. The only sig
   <div class="panel-heading">
     <h4 class="panel-title">
       <a href="javascript:void(0);" data-collapse-target="#example-oraculum-application">
-        Example: Chaplin Application in Oraculum
+        Example: Oraculum Application
       </a>
     </h4>
   </div>
@@ -87,6 +89,8 @@ Oraculum.get 'Application',
     </code></pre>
   </div>
 </div>
+
+If you're already familiar with Chaplin, this will look familiar to you. Aside from the implementation details in the underlying classes, and the named definition resolution, this is almost exactly the same as Chaplin 1.1.x. However, just like in Chaplin, these components are completely optional and aren't required to use Oraculum.
 
 <small class="pull-right">
   To learn more about Chaplin, check out [ChaplinJS.org](http://chaplinjs.org/)
