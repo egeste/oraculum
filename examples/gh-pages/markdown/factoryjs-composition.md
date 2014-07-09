@@ -1,18 +1,8 @@
-<!--
-FactoryJS definitions/mixin archictecture
-  Why FactoryJS?
-    Composition
-    Ease of debugging
-    Non-destructive operations
-    Reference instance by definition name (configuration)
-    Dynamic behavior modification of existing objects in-memory
--->
-
 FactoryJS
 ---------
 ---------
 
-<a href="examples/gh-pages/images/FactoryJS%20Composition%20Architecture.jpg" class="thumbnail pull-right col-xs-12 col-sm-4 col-md-3 text-center" target="_blank">
+<a href="examples/gh-pages/images/FactoryJS%20Composition%20Architecture.jpg" class="thumbnail pull-right col-sm-4 col-md-3 text-center" target="_blank">
   <img src="examples/gh-pages/images/FactoryJS%20Composition%20Architecture.jpg" alt="The FactoryJS Composition Architecture"/>
   <small>The FactoryJS Composition Architecture</small>
 </a>
@@ -101,14 +91,15 @@ Oraculum.extend 'View', 'Item.View', {
   tagName: 'li' # understood by Backbone.View
   className: 'item' # understood by Backbone.View
 
-  # mixinOptions alows the configuration of applied mixins
+  # mixinOptions allows the configuration of applied mixins
   mixinOptions:
     # In this case we're configuring HTMLTemplating.ViewMixin.
     # Templates can be a string or a function that returns a string.
     template: -> @model.escape 'name'
 
 }, mixins: [
-  'HTMLTemplating.ViewMixin' # @see views/mixins/html-templating.coffee
+  # @see views/mixins/html-templating.coffee
+  'HTMLTemplating.ViewMixin'
 ]
 
 # Create a list view to render our collection
@@ -123,11 +114,19 @@ Oraculum.extend 'View', 'List.View', {
       modelView: 'Item.View'
 
 }, mixins: [
-  'List.ViewMixin' # @see views/mixins/list.coffee
-  'AutoRender.ViewMixin' # @see views/mixins/auto-render.coffee
+  # @see views/mixins/list.coffee
+  'List.ViewMixin'
+  # @see views/mixins/auto-render.coffee
+  'AutoRender.ViewMixin'
 ]
     </code></pre>
   </div>
 </div>
 
-To learn more about FactoryJS, check out the [Lookout Hackers blog.](http://hackers.lookout.com/2014/03/factoryjs/)
+Using the concepts of `Factories` `Flyweight`s and `Mixin`s, using 0 lines of logic, we're able to create a `View` that will render a `<ul>` which represents our `Collection`. The behavior provided by `List.ViewMixin` will render each `Model` in the `Collection` as an `<li>` containing the name attribute of the `Model`.
+
+FactoryJS is the heart of Oraculum. At its core, Oraculum is nothing more than a set of definitions that emulates `Chaplin`'s MVC lifecycle, and a library of `Mixin`s that solve the most common use cases.
+
+<small class="pull-right">
+  To learn more about FactoryJS, check out [The Lookout Hackers blog](http://hackers.lookout.com/2014/03/factoryjs/)
+</small>
