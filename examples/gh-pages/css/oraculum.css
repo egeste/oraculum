@@ -30,6 +30,16 @@ iframe {
   margin: 0;
   padding: 0;
 }
+.html-view > h1,
+.html-view > h2,
+.html-view > h3,
+.html-view > h4 {
+  margin: 0;
+  padding-top: 20px;
+}
+.html-view > hr {
+  margin-top: 5px;
+}
 
 /* GitHub is slow... */
 #github-is-slow {
@@ -77,7 +87,10 @@ iframe {
 }
 
 /* Emulate my editor. Because reasons. */
-code.hljs { position: relative; }
+code.hljs {
+  position: relative;
+  overflow-x: hidden;
+}
 code.hljs:before {
   top: 0px;
   left: 650px;
@@ -86,15 +99,4 @@ code.hljs:before {
   display: block;
   position: absolute;
   border-left: 1px solid rgb(102, 102, 102);
-}
-
-.html-view > h1,
-.html-view > h2,
-.html-view > h3,
-.html-view > h4 {
-  margin: 0;
-  padding-top: 20px;
-}
-.html-view > hr {
-  margin-top: 5px;
 }

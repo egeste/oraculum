@@ -13,16 +13,9 @@ Oraculum relies on this property of FactoryJS via BackboneFactory to provide an 
 
 <div class="clearfix"></div>
 
-<div class="panel panel-default">
-  <div class="panel-heading">
-    <h4 class="panel-title">
-      <a href="javascript:void(0);" data-collapse-target="#example-ref-def-by-name">
-        Example: Referencing factory definitions by name
-      </a>
-    </h4>
-  </div>
-  <div id="example-ref-def-by-name" class="panel-collapse collapse">
-    <pre><code class="coffeescript">
+#### Example: Referencing factory definitions by name
+-----------------------------------------------------
+```coffeescript
 # Create a simple definition based on the Model definition.
 # The provided definition will be extended onto the base definition when an
 # instance is requested from the factory.
@@ -68,22 +61,14 @@ view = Oraculum.get 'View',
 alert ['Singleton resolved?', view.collection is singleton].join ' '
 
 # Continued in the next example...
-    </code></pre>
-  </div>
-</div>
+```
 
 This allows Oraculum applications to be largely reduced to configuration. We refer to these types of configuration definitions as a `Flyweight`. `Flyweight`s can be thought of as a configuration manifest that instruct the `Factory` to stitch together `Definition`s and `Mixin`s.
 
-<div class="panel panel-default">
-  <div class="panel-heading">
-    <h4 class="panel-title">
-      <a href="javascript:void(0);" data-collapse-target="#example-flyweight">
-        Example: Factories, Flyweights &amp; Mixins
-      </a>
-    </h4>
-  </div>
-  <div id="example-flyweight" class="panel-collapse collapse">
-    <pre><code class="coffeescript">
+
+#### Example: Factories, Flyweights & Mixins
+------------------------------------------------
+```coffeescript
 # Continued from the previous example...
 
 # In this example, Oraculum is our factory.
@@ -145,9 +130,7 @@ Oraculum.extend 'View', 'List.View', {
   # @see views/mixins/auto-render.coffee
   'AutoRender.ViewMixin'
 ]
-    </code></pre>
-  </div>
-</div>
+```
 
 Using the concepts of `Factories` `Flyweight`s and `Mixin`s, and using 0 lines of logic, we're able to create a `View` that will render a `<ul>` which represents our `Collection`. The behavior provided by `List.ViewMixin` will render each `Model` in the `Collection` as an `<li>` containing the name attribute of the `Model`. Additionally, because of `AutoQuack.ViewMixin`, the `quack()` method of `@model` will beautomatically  invoked after `Item.View` is rendered.
 

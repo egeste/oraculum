@@ -30,16 +30,9 @@ The application lifecycle is the same between Chaplin and Oraculum. The only sig
 
 <div class="clearfix"></div>
 
-<div class="panel panel-default">
-  <div class="panel-heading">
-    <h4 class="panel-title">
-      <a href="javascript:void(0);" data-collapse-target="#example-oraculum-application">
-        Example: Oraculum Application
-      </a>
-    </h4>
-  </div>
-  <div id="example-oraculum-application" class="panel-collapse collapse">
-    <pre><code class="coffeescript">
+#### Example: Oraculum Application
+----------------------------------
+```coffeescript
 # Create a routes function to handle our routing
 routes = (match) ->
   # The matching syntax is the same as Chaplin's however, the route spec
@@ -86,9 +79,7 @@ Oraculum.extend 'View', 'Custom.Layout', {
 Oraculum.get 'Application',
   layout: 'Custom.Layout' # The factory will resolve this for you
   routes: routes
-    </code></pre>
-  </div>
-</div>
+```
 
 If you're already familiar with Chaplin, this will look familiar to you. Aside from the implementation details in the underlying classes, and the named definition resolution, this is almost exactly the same as Chaplin 1.1.x. However, just like in Chaplin, these components are completely optional and aren't required to use Oraculum.
 
