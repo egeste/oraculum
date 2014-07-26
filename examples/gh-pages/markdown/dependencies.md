@@ -14,7 +14,7 @@ Dependencies
   </a>
 </div>
 
-Oraculum is a superset of Backbone and FactoryJS. To get an Oraculum application off the ground we first need load these libraries and their dependencies. Feel free to use the AMD library of your choice, but the following examples will assume you're using RequireJS. For the sake of brevity, these examples will also assume your project root is '.' and you're using bower for dependency management.
+Oraculum is a library built on Backbone and FactoryJS. To get an Oraculum application off the ground we first need load these libraries and their dependencies. Feel free to use the AMD library of your choice, but the following examples will assume you're using RequireJS. For the sake of brevity, these examples will also assume your project root is '.' and you're using bower for dependency management.
 
 #### Sample bower.json
 ----------------------
@@ -29,7 +29,7 @@ Oraculum is a superset of Backbone and FactoryJS. To get an Oraculum application
 }
 ```
 
-Oraculum's only dependency is on FactoryJS, which in turn depends on Backbone, Underscore and jQuery. Feel free to take a peek at [Oraculum's bower.json](https://github.com/lookout/oraculum/blob/master/bower.json).
+Oraculum's only dependency is on FactoryJS. Feel free to take a peek at [Oraculum's bower.json](https://github.com/lookout/oraculum/blob/master/bower.json).
 
 Now that we have all of our dependencies, we need to tell our module loader how to find them.
 
@@ -39,11 +39,17 @@ Now that we have all of our dependencies, we need to tell our module loader how 
 require.config({
   basePath: 'js/'
   paths:
-    jquery: 'bower_components/jquery/dist/jquery'
-    backbone: 'bower_components/backbone/backbone'
-    underscore: 'bower_components/underscore/underscore'
     Factory: 'bower_components/factoryjs/dist/Factory'
     BackboneFactory: 'bower_components/factoryjs/dist/BackboneFactory'
+    underscore: 'bower_components/underscore/underscore'
+    backbone: 'bower_components/backbone/backbone'
+    jquery: 'bower_components/jquery/dist/jquery'
+  shim:
+    jquery: exports: 'jQuery'
+    underscore: exports: 'underscore'
+    backbone:
+      deps: ['jquery', 'underscore']
+      exports: 'Backbone'
   packages: [{
     name: 'oraculum'
     location: 'bower_components/oraculum/dist'
@@ -53,22 +59,3 @@ require.config({
   }]
 })
 ```
-
-You may notice a couple interesting things about this config. First, BackboneFactory - what is that? BackboneFactory is a FactoryJS container for Backbone objects provided by FactoryJS. Oraculum mirrors the definitions of BackboneFactory which is how it resolves things like `collection: 'Collection'`.
-
-<!--
-Getting Started
-  RequireJS and dependencies
-  MakeEventedMethod, AOP hooks
-  Importance of mixin order
-  Basics
-    Create a simple Model with mixins
-    Create a simple View with mixins
-  Application
-    Create a layout
-    Create a routes file
-    Create a controller
-    Wire it all up
-  Provided interfaces
-  Creating custom mixins
--->

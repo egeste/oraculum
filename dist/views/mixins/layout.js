@@ -74,15 +74,12 @@
         return window.scrollTo(x, y);
       },
       scrollTo: function() {
-        var args, scroll, selector;
+        var args, scroll, selector, _ref;
         selector = arguments[0], args = 2 <= arguments.length ? __slice.call(arguments, 1) : [];
         scroll = {
           scrollTop: $(selector).offset().top
         };
-        return _.defer(function() {
-          var _ref;
-          return (_ref = $(document.body)).animate.apply(_ref, [scroll].concat(__slice.call(args)));
-        });
+        return (_ref = $(document.body)).animate.apply(_ref, [scroll].concat(__slice.call(args)));
       },
       adjustTitle: function(subtitle) {
         var title, titleTemplate;
