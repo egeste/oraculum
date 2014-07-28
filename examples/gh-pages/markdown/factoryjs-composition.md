@@ -7,17 +7,17 @@ FactoryJS
   <small>The FactoryJS Composition Architecture</small>
 </a>
 
-Unlike any of psuedo classical inheritance mechanisms provided by other javascript frameworks or compilers, Oraculum uses FactoryJS to perform object composition. This adds a critical layer of flexibility allowing object definition, extension, and overriding without mutating underlying prototypes. This means that your application can be modified, extended, or otherwise altered without affecting other parts of the system or losing the original definition. This is incredibly useful for adding and removing functionality from an existing application, or simply modifying an application's behavior, without ever having to touch the application's underlying code.
+Unlike any of psuedo classical inheritance mechanisms provided by other javascript frameworks or compilers, Oraculum uses FactoryJS to perform object composition. This adds a critical layer of flexibility allowing object `definition`, extension, and overriding without mutating underlying prototypes. This means that your application can be modified, extended, or otherwise altered without affecting other parts of the system or losing the original `definition`. This is incredibly useful for adding and removing functionality from an existing application, or simply modifying an application's behavior, without ever having to touch the application's underlying code.
 
-Oraculum relies on this property of FactoryJS via BackboneFactory to provide an altered `Model`, `Collection`, and `View` definition that allows referencing factory definitions by name, without modifying Backbone's `Model`, `Collection`, or `View` prototypes. If you want to, you can continue to use all of Backbone's classes like you normally would alongside Oraculum definitions.
+Oraculum relies on this property of FactoryJS via BackboneFactory to provide an altered `Model`, `Collection`, and `View` `definition` that allows referencing factory `definition`s by name, without modifying Backbone's `Model`, `Collection`, or `View` prototypes. If you want to, you can continue to use all of Backbone's classes like you normally would alongside Oraculum `definition`s.
 
 <div class="clearfix"></div>
 
-#### Example: Referencing factory definitions by name
+#### Example: Referencing factory `definition`s by name
 -----------------------------------------------------
 ```coffeescript
-# Create a simple definition based on the Model definition.
-# The provided definition will be extended onto the base definition when an
+# Create a simple `definition` based on the Model `definition`.
+# The provided `definition` will be extended onto the base `definition` when an
 # instance is requested from the factory.
 Oraculum.extend 'Model', 'Custom.Model', {
 
@@ -26,21 +26,21 @@ Oraculum.extend 'Model', 'Custom.Model', {
 
 }
 
-# Create another simple definition based on the Collection definition.
+# Create another simple `definition` based on the Collection `definition`.
 Oraculum.extend 'Collection', 'Singleton.Collection', {
-  # Reference our custom model definition by name as a string.
-  # It will automagically get resolved to a factory definition constructor.
+  # Reference our custom model `definition` by name as a string.
+  # It will automagically get resolved to a factory `definition` constructor.
   model: 'Custom.Model'
 
   # Provide a simple method to illustrate that the instance gets composed.
   quack: -> @invoke 'quack'
 
-# Make this definition a singleton.
-# After the first time this definition has been constructed, all other requests
-# for this definition will return the same instance.
+# Make this `definition` a singleton.
+# After the first time this `definition` has been constructed, all other requests
+# for this `definition` will return the same instance.
 }, singleton: true
 
-# Request an instance of our Singleton.Collection definition so we can add some
+# Request an instance of our Singleton.Collection `definition` so we can add some
 # models to it.
 singleton = Oraculum.get 'Singleton.Collection'
 singleton.add id: 1, name: 'Duck'
@@ -51,7 +51,7 @@ singleton.add id: 3, name: 'Ugly Duckling'
 # instances.
 singleton.quack()
 
-# Create a new view (modified Backbone.View), passing our singleton definition
+# Create a new view (modified Backbone.View), passing our singleton `definition`
 # name as the collection.
 view = Oraculum.get 'View',
  collection: 'Singleton.Collection'
@@ -63,7 +63,7 @@ alert ['Singleton resolved?', view.collection is singleton].join ' '
 # Continued in the next example...
 ```
 
-This allows Oraculum applications to be largely reduced to configuration. We refer to these types of configuration definitions as a `Flyweight`. `Flyweight`s can be thought of as a configuration manifest that instruct the `Factory` to stitch together `Definition`s and `Mixin`s.
+This allows Oraculum applications to be largely reduced to configuration. We refer to these types of configuration `definition`s as a `Flyweight`. `Flyweight`s can be thought of as a configuration manifest that instruct the `Factory` to stitch together `Definition`s and `Mixin`s.
 
 
 #### Example: Factories, Flyweights & Mixins
@@ -76,7 +76,7 @@ This allows Oraculum applications to be largely reduced to configuration. We ref
 # Create a mixin that invokes @model.quack on render
 Oraculum.defineMixin 'AutoQuack.ViewMixin', {
 
-  # Depended mixins can be configured directly on the current mixin definition
+  # Depended mixins can be configured directly on the current mixin `definition`
   mixinOptions:
     # Configure the behavior of EventedMethod.Mixin to fire events on render
     eventedMethods:
@@ -134,7 +134,7 @@ Oraculum.extend 'View', 'List.View', {
 
 Using the concepts of `Factories` `Flyweight`s and `Mixin`s, and using 0 lines of logic, we're able to create a `View` that will render a `<ul>` which represents our `Collection`. The behavior provided by `List.ViewMixin` will render each `Model` in the `Collection` as an `<li>` containing the name attribute of the `Model`. Additionally, because of `AutoQuack.ViewMixin`, the `quack()` method of `@model` will beautomatically  invoked after `Item.View` is rendered.
 
-FactoryJS is the heart of Oraculum. At its core, Oraculum is nothing more than a set of definitions that emulates `Chaplin`'s MVC lifecycle, and a library of `Mixin`s that solve the most common use cases.
+FactoryJS is the heart of Oraculum. At its core, Oraculum is nothing more than a set of `definition`s that emulates `Chaplin`'s MVC lifecycle, and a library of `Mixin`s that solve the most common use cases.
 
 <small class="pull-right">
   To learn more about FactoryJS, check out [The Lookout Hackers blog](http://hackers.lookout.com/2014/03/factoryjs/)

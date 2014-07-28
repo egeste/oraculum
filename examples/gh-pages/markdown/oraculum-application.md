@@ -1,37 +1,11 @@
-<!--
-Oraculum definitions/mixins
-  What's provided
-    MVC components
-    AOP hooking (makeEventedMethod, makeMiddlewareMethod)
-    Behavior library
--->
-
 Oraculum Application
 --------------------
 --------------------
 
-<a href="examples/gh-pages/images/Oraculum%20Application%20Components.jpg" class="thumbnail pull-right col-sm-4 col-md-3 text-center" target="_blank">
-  <img src="examples/gh-pages/images/Oraculum%20Application%20Components.jpg" alt="Oraculum Application Components"/>
-  <small>Oraculum Application Components</small>
-</a>
+If you're already familiar with Chaplin, building an application will look familiar to you. Aside from the implementation details in the underlying classes, and the named `definition` resolution, structuring an application in Oraculum almost exactly the same as Chaplin 1.1.x. However, just like in Chaplin, these components are completely optional and aren't required to use Oraculum.
 
-Oraculum's core application definitions and mixins are ported from concepts in Chaplin. Like Chaplin, Oraculum provides the following classes:
-
-  * Application
-  * Controller
-  * Dispatcher
-  * Composer
-    * Composition
-  * Router (improved)
-    * Route
-  * History (improved)
-
-The application lifecycle is the same between Chaplin and Oraculum. The only significant difference is Oraculum's use of FactoryJS to resolve classes and inject behaviors. Because of this, the mixins used in Oraculum's core application components are available to any definition that wants to use them. This includes mixins for publishing/subscribing to a global event bus, making objects disposable in a memory-safe way, freezing objects after construction, and several others.
-
-<div class="clearfix"></div>
-
-#### Example: Oraculum Application
-----------------------------------
+#### Example: Oraculum `Application`
+------------------------------------
 ```coffeescript
 # Create a routes function to handle our routing
 routes = (match) ->
@@ -45,12 +19,10 @@ routes = (match) ->
 # @see https://github.com/chaplinjs/chaplin/blob/master/docs/chaplin.controller.md
 Oraculum.extend 'Controller', 'Index.Controller', {
 
-  # This is our main `Action`
+  # Methods of `Controller`s mapped to `Route`s are referred to as `Action`s.
+  # This is our 'main' `action`.
   main: ->
-    # @see https://github.com/chaplinjs/chaplin/blob/master/docs/chaplin.composer.md
-    @reuse 'list', 'List.View',
-      region: 'example' # Use the 'example' region in our layout.
-      collection: 'Singleton.Collection' # The factory will resolve this.
+    alert 'Main doesn\'t actually do anything!'
 
 }, inheritMixins: true
 
@@ -81,8 +53,108 @@ Oraculum.get 'Application',
   routes: routes
 ```
 
-If you're already familiar with Chaplin, this will look familiar to you. Aside from the implementation details in the underlying classes, and the named definition resolution, this is almost exactly the same as Chaplin 1.1.x. However, just like in Chaplin, these components are completely optional and aren't required to use Oraculum.
+Defining `Model`s, `Collection`s and `View`s
+--------------------------------------------
+--------------------------------------------
 
-<small class="pull-right">
-  To learn more about Chaplin, check out [ChaplinJS.org](http://chaplinjs.org/)
-</small>
+With our application structure in place, we can start to define our custom components. Let's start with a simple `model`/`collection`. The context is unimportant for now, so we'll call them "Item.Model" and "Item.Collection".
+
+#### Example: Item.Model, Item.Collection
+-----------------------------------------
+```coffeescript
+# Extend the provided `Model`, and name our new `definition` Item.Model
+Oraculum.extend 'Model', 'Item.Model', {
+  urlRoot: '/api/items' # GET /api/items/:id
+
+}, mixins: [
+  'Disposable.Mixin' # Make these instances disposable
+  'SyncMachine.ModelMixin' # Make these instances emit sync events
+  'XHRDebounce.ModelMixin' # Make these instances debounce requests
+]
+
+# Extend the provided `Collection`, and name our new `definition` Item.Collection
+Oraculum.extend 'Collection', 'Item.Collection', {
+  url: '/api/items' # GET /api/items
+  model: 'Item.Model' # Use Item.Model as our default model
+
+}, mixins: [
+  'Disposable.CollectionMixin' # Make these instances dispose its models
+  'SyncMachine.ModelMixin' # Make these instances emit sync events
+  'XHRDebounce.ModelMixin' # Make these instances debounce requests
+]
+```
+
+Now that we have a custom `model`/`collection`, let's define a view to display their data.
+
+#### Example: Item.View, ItemList.View
+--------------------------------------
+```coffeescript
+# Extend the provided `View`, and name our new `definition` Item.View
+Oraculum.extend 'View', 'Item.View', {
+  tagName: 'li' # Use <li/> as our tag
+
+  mixinOptions:
+    staticClasses: ['item-view'] # Force the css class '.item-view'
+    # Bind the `name` attribute of `@model` to this <span/> node.
+    # @see views/mixins/dom-property-binding.coffee
+    template: '<span data-prop="model" data-prop-attr="name"/>'
+
+}, mixins: [
+  'Disposable.Mixin' # Make these instances disposable
+  'StaticClasses.ViewMixin' # Make these instances force a css class
+  'HTMLTemplating.ViewMixin' # Make these instances render an html template
+  'DOMPropertyBinding.ViewMixin' # Make these instances bind data their dom
+]
+
+# Extend the provided `View`, and name our new `definition` ItemList.View
+Oraculum.extend 'View', 'ItemList.View', {
+  tagName: 'ul' # Use <ul/> as our tag
+
+  mixinOptions:
+    staticClasses: ['item-list-view'] # Force the css class '.item-list-view'
+    # Tell `List.ViewMixin` to use `Item.View` to render models in @collection
+    list:
+      modelView: 'Item.View'
+
+}, mixins: [
+  'Disposable.Mixin' # Make these instances disposable
+  'List.ViewMixin' # Make these instances render views for items in @collection
+  'RegionAttach.ViewMixin' # Make these instances attach to regions
+  'StaticClasses.ViewMixin' # Make these instances force a css class
+  'AutoRender.ViewMixin' # Make these instances automatically invoke render()
+]
+```
+
+Now that we have all of the components we need to actually get our data and render it, let's modify our routes file and `controller` to wire it all together.
+
+#### Example: Adding a new `Route`/`Controller` `Action`
+--------------------------------------------------------
+```coffeescript
+# Modified code from Example: Oraculum Application
+
+routes = (match) ->
+  # Add our new '/items' route before our catchall
+  match 'items', 'Index.Controller#items'
+  match '*url', 'Index.Controller#main'
+
+Oraculum.extend 'Controller', 'Index.Controller', {
+
+  # Create our new 'items' `action`.
+  items: ->
+    # Get an instance of Item.Collection and export it to the controller so
+    # it will get cleaned up/disposed automatically with the controller.
+    @collection = @__factory().get 'Item.Collection'
+    # Compose an instance of ItemList.View and pass it our collection.
+    @reuse 'item-list', 'ItemList.View',
+      region: 'example' # Use the 'example' region in our layout.
+      collection: @collection
+    # Finally, fetch the collection's data.
+    @collection.fetch()
+
+}, inheritMixins: true
+```
+<!--
+Getting Started
+  Creating custom mixins
+  Provided interfaces
+-->
