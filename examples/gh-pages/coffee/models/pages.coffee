@@ -52,16 +52,13 @@ define [
       id: 'getting-started'
       name: 'Getting Started'
       markdown: gettingStarted
-    }
-    # {
-    #   id: 'advanced-techniques'
-    #   name: 'Advanced Techniques'
-    #   markdown: advancedTechniques
-    #   sections: getSections advancedTechniques
+    }, {
+      id: 'advanced-techniques'
+      name: 'Advanced Techniques'
+      markdown: advancedTechniques
+    }#, {
+    #   id: 'examples'
+    #   name: 'Examples'
+    #   markdown: examples
     # }
-    {
-      id: 'examples'
-      name: 'Examples'
-      markdown: examples
-    }
   ], parse: true

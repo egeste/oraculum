@@ -5,7 +5,6 @@ define [
   'text!md/dependencies.md'
   'text!md/oraculum-application.md'
   'text!md/authoring-mixins.md'
-  'text!md/behavior-interfaces.md'
 ], (Dox, stub, args...) ->
 
   return Dox.get('concatTemplate') args...

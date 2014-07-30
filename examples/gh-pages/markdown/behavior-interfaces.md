@@ -39,11 +39,11 @@ Oraculum.defineMixin 'ServerSortByAttributeDirection.CollectionMixin', {
 
 <div class="alert alert-info text-center">
   <h4>Check out the dox</h4>
-  There are two client-side sorting implementations available in Oraculum.
-  <ul class="unstyled">
-    <li><a href="/docs/src/models/mixins/sort-by-attribute-direction.coffee.html" target="_blank" rel="external">SortByAttributeDirection.CollectionMixin</a></li>
-    <li><a href="/docs/src/models/mixins/sort-by-multi-attribute-direction.coffee.html" target="_blank" rel="external">SortByMultiAttributeDirection.CollectionMixin</a></li>
-  </ul>
+  There are two client-side sorting implementations available in Oraculum. See:
+  <br/>
+  <a href="/docs/src/models/mixins/sort-by-attribute-direction.coffee.html" target="_blank" rel="external">SortByAttributeDirection.CollectionMixin</a>
+  <br/>
+  <a href="/docs/src/models/mixins/sort-by-multi-attribute-direction.coffee.html" target="_blank" rel="external">SortByMultiAttributeDirection.CollectionMixin</a>
 </div>
 
 In all of these examples we're relying on the `SortByAttributeDirectionInterface.CollectionMixin` to provide the `sortState` state machine as well as an interface to modify it, allowing us to simply focus on how to handle changes to its state. In the 'Server-side `collection` sorting' example, we hook the `sync` method to modify its `options` argument before listening for changes on the state machine, and invoking `fetch()`. Fetching the `collection` will send the `sortState`'s attribute/direction properties to the server via query strings, and changing the sort state will result in a new `fetch()`.
