@@ -36,18 +36,18 @@ challenges faced when building a single page application, but there will inevita
 The first thing to know before you start writing your own `mixin`s and `definition`s is how Oraculum approchaes inheritance. JavaScript provides no native inheritance mechanism. Any prior experience you may have with the concept of inheritance in JavaScript is based on iterating over an object and copying members from that object to another. This approach can enable similar behavior to classical inheritance, but lacks many features of classical inheritance, such as referencing parent members, calling super() on a method, interfaces, abstract classes, etc. Again, many libraries, and even CoffeeScript, attempt to emulate these behaviors, but in most cases this approach tends to lead to very tightly coupled behavior with frequent mutation of object prototypes.
 
 Instead of relying on faux classical inheritance for modifying an object's prototype, Oraculum provides two utilities: `makeEventedMethod`, and `makeMiddlewareMethod`. These utilities create a wrapped version of a target function that emit `:before` and `:after` events on a target event emitter.
-Oraculum also provides this functionality as a `mixin` via <a href="/docs/src/mixins/evented-method.coffee.html" rel="external" target="_blank">EventedMethod.Mixin</a> and <a href="/docs/src/mixins/middleware-method.coffee.html" rel="external" target="_blank">MiddlewareMethod.Mixin</a>, which allow methods to be wrapped immediately after an object is constructed.
+Oraculum also provides this functionality as a `mixin` via <a href="docs/src/mixins/evented-method.coffee.html" rel="external" target="_blank">EventedMethod.Mixin</a> and <a href="docs/src/mixins/middleware-method.coffee.html" rel="external" target="_blank">MiddlewareMethod.Mixin</a>, which allow methods to be wrapped immediately after an object is constructed.
 
 `makeEventedMethod` and `makeMiddlewareMethod` are how Oraculum provides shallow composition over deep inheritance, and they form the heart of Oraculum's AOP-based logic decoupling.
 
 #### Example: Hooking instance methods
 --------------------------------------
 ```coffeescript
-# Create a `definition` that uses <a href="/docs/src/mixins/evented-method.coffee.html" rel="external" target="_blank">EventedMethod.Mixin</a>
+# Create a `definition` that uses <a href="docs/src/mixins/evented-method.coffee.html" rel="external" target="_blank">EventedMethod.Mixin</a>
 Oraculum.extend 'View', 'Alert.View', {
 
   mixinOptions:
-    # Configure the <a href="/docs/src/mixins/evented-method.coffee.html" rel="external" target="_blank">EventedMethod.Mixin</a> to wrap the render method.
+    # Configure the <a href="docs/src/mixins/evented-method.coffee.html" rel="external" target="_blank">EventedMethod.Mixin</a> to wrap the render method.
     eventedMethods:
       render: {}
 
@@ -65,7 +65,7 @@ view = Oraculum.get 'Alert.View'
 view.render()
 ```
 
-This even works with targeting methods provided by other `mixin`s, provided those `mixin`s are injected before <a href="/docs/src/mixins/evented-method.coffee.html" rel="external" target="_blank">EventedMethod.Mixin</a>.
+This even works with targeting methods provided by other `mixin`s, provided those `mixin`s are injected before <a href="docs/src/mixins/evented-method.coffee.html" rel="external" target="_blank">EventedMethod.Mixin</a>.
 
 #### Example: Hooking `mixin` methods
 -------------------------------------
@@ -79,7 +79,7 @@ Oraculum.defineMixin 'Some.Mixin',
 Oraculum.extend 'View', 'Some.View', {
 
   mixinOptions:
-    # Configure the <a href="/docs/src/mixins/evented-method.coffee.html" rel="external" target="_blank">EventedMethod.Mixin</a> to wrap our provided method.
+    # Configure the <a href="docs/src/mixins/evented-method.coffee.html" rel="external" target="_blank">EventedMethod.Mixin</a> to wrap our provided method.
     eventedMethods:
       someMethod: {}
 
@@ -106,7 +106,7 @@ And just in case you weren't sold yet, you can even hook methods of other `mixin
 Oraculum.defineMixin 'SomeOther.Mixin', {
 
   mixinOptions:
-    # Configure the <a href="/docs/src/mixins/evented-method.coffee.html" rel="external" target="_blank">EventedMethod.Mixin</a> to wrap our provided method.
+    # Configure the <a href="docs/src/mixins/evented-method.coffee.html" rel="external" target="_blank">EventedMethod.Mixin</a> to wrap our provided method.
     eventedMethods:
       someMethod: {}
 
@@ -132,5 +132,5 @@ view.someMethod()
 
 <div class="alert alert-info text-center">
   <h4>Heads up!</h4>
-  The order in which you specify your `mixin`s is important. In the 'Hooking `mixin` methods example we are careful to use `Some.Mixin` _before_ <a href="/docs/src/mixins/evented-method.coffee.html" rel="external" target="_blank">EventedMethod.Mixin</a> so that by the time <a href="/docs/src/mixins/evented-method.coffee.html" rel="external" target="_blank">EventedMethod.Mixin</a> gets initialized, all of `Some.Mixin`'s methods are available to hook.
+  The order in which you specify your `mixin`s is important. In the 'Hooking `mixin` methods example we are careful to use `Some.Mixin` _before_ <a href="docs/src/mixins/evented-method.coffee.html" rel="external" target="_blank">EventedMethod.Mixin</a> so that by the time <a href="docs/src/mixins/evented-method.coffee.html" rel="external" target="_blank">EventedMethod.Mixin</a> gets initialized, all of `Some.Mixin`'s methods are available to hook.
 </div>

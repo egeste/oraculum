@@ -1,6 +1,5 @@
 <!--
   Definition overrides, when and how to use them
-  Mixin interfaces and swappable implementations
 -->
 
 Object-level aspect oriented programming with FactoryJS

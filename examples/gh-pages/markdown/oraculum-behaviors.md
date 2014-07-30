@@ -2,7 +2,7 @@ Oraculum Behaviors
 ------------------
 ------------------
 
-Oraculum comes with a large library of `mixin`s that aim to solve some of the most common use case problems when building a Backbone application. For example, if you need to bind an attribute of a `Model` to a particular element in a `View`, you may choose to use <a href="/docs/src/views/mixins/dom-property-binding.coffee.html" rel="external" target="_blank">DOMPropertyBinding.ViewMixin</a>, which has both a configuration and data-attribute based interface for one-way model -> element binding. If you want a `Model` to automatically invokes `fetch()` after it's been constructed, you could use <a href="/docs/models/mixins/auto-fetch.coffee.html" rel="external" target="_blank">AutoFetch.ModelMixin</a>, etc.
+Oraculum comes with a large library of `mixin`s that aim to solve some of the most common use case problems when building a Backbone application. For example, if you need to bind an attribute of a `Model` to a particular element in a `View`, you may choose to use <a href="docs/src/views/mixins/dom-property-binding.coffee.html" rel="external" target="_blank">DOMPropertyBinding.ViewMixin</a>, which has both a configuration and data-attribute based interface for one-way model -> element binding. If you want a `Model` to automatically invokes `fetch()` after it's been constructed, you could use <a href="docs/models/mixins/auto-fetch.coffee.html" rel="external" target="_blank">AutoFetch.ModelMixin</a>, etc.
 
 #### List of mixins
 -------------------

@@ -16,7 +16,7 @@ routes = (match) ->
 
 # Remember that route spec we used in our routes file?
 # Let's create a controller that matches it.
-# @see https://github.com/chaplinjs/chaplin/blob/master/docs/chaplin.controller.md
+# @see https://github.com/chaplinjs/chaplin/blob/masterdocs/chaplin.controller.md
 Oraculum.extend 'Controller', 'Index.Controller', {
 
   # Methods of `Controller`s mapped to `Route`s are referred to as `Action`s.

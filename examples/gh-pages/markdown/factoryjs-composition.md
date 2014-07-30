@@ -132,7 +132,7 @@ Oraculum.extend 'View', 'List.View', {
 ]
 ```
 
-Using the concepts of `Factories` `Flyweight`s and `Mixin`s, and using 0 lines of logic, we're able to create a `View` that will render a `<ul>` which represents our `Collection`. The behavior provided by <a href="/docs/src/views/mixins/list.coffee.html" rel="external" target="_blank">List.ViewMixin</a> will render each `Model` in the `Collection` as an `<li>` containing the name attribute of the `Model`. Additionally, because of `AutoQuack.ViewMixin`, the `quack()` method of `@model` will be automatically invoked after `Item.View` is rendered.
+Using the concepts of `Factories` `Flyweight`s and `Mixin`s, and using 0 lines of logic, we're able to create a `View` that will render a `<ul>` which represents our `Collection`. The behavior provided by <a href="docs/src/views/mixins/list.coffee.html" rel="external" target="_blank">List.ViewMixin</a> will render each `Model` in the `Collection` as an `<li>` containing the name attribute of the `Model`. Additionally, because of `AutoQuack.ViewMixin`, the `quack()` method of `@model` will be automatically invoked after `Item.View` is rendered.
 
 FactoryJS is the heart of Oraculum. At its core, Oraculum is nothing more than a set of `definition`s that emulates `Chaplin`'s MVC lifecycle, and a library of `Mixin`s that solve the most common use cases.
 
