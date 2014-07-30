@@ -127,7 +127,7 @@ Oraculum.extend 'View', 'ItemList.View', {
 
 <div class="alert alert-success text-center">
   <h4>Best practices</h4>
-  Any mixin that automatically performs or invokes a method should generally come last in the `mixin` stack. A good example is `AutoRender.ViewMixin`, which will cause `:before` and `:after` events on `render` not to fire if it is executed before `EventedMethod.Mixin`.
+  Any mixin that automatically performs a behavior or invokes a method should generally come last in the `mixin` stack. A good example is `AutoRender.ViewMixin`, which will cause `:before` and `:after` events on `render` not to fire if it is executed before `EventedMethod.Mixin`.
 </div>
 
 Now that we have all of the components we need to actually get our data and render it, let's modify our routes file and `controller` to wire it all together.

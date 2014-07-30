@@ -45,11 +45,14 @@ iframe {
 #github-is-slow {
   top: 50%;
   left: 50%;
-  border: 5px solid #fff;
   position: fixed;
+  margin-top: -160px;
+  margin-left: -160px;
+}
+
+#github-is-slow img {
+  border: 5px solid #fff;
   background: #fff;
-  margin-top: -64px;
-  margin-left: -64px;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, .3);
 }
 
