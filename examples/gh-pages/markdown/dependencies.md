@@ -3,9 +3,7 @@ Dependencies
 ------------
 
 <div class="text-center alert alert-info" role="alert">
-  <strong>
-    Heads up!
-  </strong>
+  <h4>Heads up!</h4>
   To make Oraculum available in other environments, we plan to convert it to [CommonJS](http://wiki.commonjs.org/wiki/CommonJS) and provide a [UMD](https://github.com/umdjs/umd) build.
   <br/>
   <br/>

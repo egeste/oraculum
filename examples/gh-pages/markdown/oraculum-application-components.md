@@ -7,7 +7,7 @@ Oraculum Application Components
   <small>Oraculum Application Components</small>
 </a>
 
-Oraculum's core application `definition`s and mixins are ported from concepts in Chaplin. Like Chaplin, Oraculum provides the following classes:
+Oraculum's core application `definition`s and `mixin`s are ported from concepts in Chaplin. Like Chaplin, Oraculum provides the following classes:
 
   * Application
   * Controller
@@ -18,7 +18,7 @@ Oraculum's core application `definition`s and mixins are ported from concepts in
     * Route
   * History (improved)
 
-The application lifecycle is the same between Chaplin and Oraculum. The only significant difference is Oraculum's use of FactoryJS to resolve classes and inject behaviors. Because of this, the mixins used in Oraculum's core application components are available to any `definition` that wants to use them. This includes mixins for publishing/subscribing to a global event bus, making objects disposable in a memory-safe way, freezing objects after construction, and several others.
+The application lifecycle is the same between Chaplin and Oraculum. The only significant difference is Oraculum's use of FactoryJS to resolve classes and inject behaviors. Because of this, the `mixin`s used in Oraculum's core application components are available to any `definition` that wants to use them. This includes `mixin`s for publishing/subscribing to a global event bus, making objects disposable in a memory-safe way, freezing objects after construction, and several others.
 
 <small class="pull-right">
   To learn more about Chaplin, check out [ChaplinJS.org](http://chaplinjs.org/)

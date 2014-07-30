@@ -41,39 +41,20 @@ define [
 
     events:
       'click [href="#top"]': '_scrollTop'
-      'click .next:not([disabled])': '_next'
-      'click .prev:not([disabled])': '_prev'
 
     mixinOptions:
       staticClasses: ['sidebar-view']
+      scrollspy:
+        target: '.sidebar-view'
       list:
         modelView: 'SidebarItem.View'
         listSelector: 'ul.nav'
-      scrollspy:
-        target: '.sidebar-view'
       template: '''
         <ul class="nav"/>
-        <ul class="pagination pagination-sm">
-          <li>
-            <a href="javascript:void(0);" class="prev">
-              &laquo; Previous
-            </a>
-          </li>
-          <li>
-            <a href="#top" rel="external">
-              ^ Top
-            </a>
-          </li>
-          <li>
-            <a href="javascript:void(0);" class="next">
-              Next &raquo;
-            </a>
-          </li>
-        </ul>
+        <a href="#top" class="btn btn-default btn-sm" rel="external">
+          ^ Top
+        </a>
       '''
-
-    _next: ->
-    _prev: ->
 
     _scrollTop: (e) ->
       e.preventDefault()
