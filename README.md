@@ -14,8 +14,8 @@ Readme
 [Documentation](http://hackers.lookout.com/oraculum/README.md.html)
 
 [![Bower version](https://badge.fury.io/bo/Oraculum.svg)](http://badge.fury.io/bo/Oraculum)
-[![Build Status](https://travis-ci.org/egeste/oraculum.svg)](https://travis-ci.org/egeste/oraculum)
-[![Coverage Status](https://img.shields.io/coveralls/egeste/oraculum.svg)](https://coveralls.io/r/egeste/oraculum?branch=master)
+[![Build Status](https://travis-ci.org/lookout/oraculum.svg)](https://travis-ci.org/lookout/oraculum)
+[![Coverage Status](https://img.shields.io/coveralls/lookout/oraculum.svg)](https://coveralls.io/r/lookout/oraculum?branch=master)
 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 
 Oraculum is a [javascript MVC framework](http://todomvc.com/architecture-examples/oraculum/) and a collection of `mixin`s for [Backbone](http://backbonejs.org/) `Model`s, `Collection`s and `View`s written for [FactoryJS](https://github.com/lookout/factoryjs/). It inherits all of its application structure, many behaviors, and is generally inspired by [Chaplin](http://chaplinjs.org/).
